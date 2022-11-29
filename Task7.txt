@@ -1,0 +1,74 @@
+Q. Solving problems using array functions on the rest countries' data.
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        var api= new XMLHttpRequest();
+        api.open('GET','https://restcountries.com/v3.1/all');
+        api.send();
+        api.onload=function()
+        {
+            var req=api.response;
+            var ap=JSON.parse(req);
+            console.log(ap);
+
+
+//a) Get all the countries from the Asia continent /region using the Filter function
+
+            var a1=ap.filter((ele)=>ele.continents=='Asia');
+            console.log(a1);
+
+
+
+//b) Get all the countries with a population of less than 2 lakhs using Filter function
+            
+            var a2=ap.filter((ele)=>ele.population<200000);
+            console.log(a2);
+   
+
+
+//c)Print the following details name, capital, flag using forEach function
+                    
+    ap.forEach(myfunctn)
+        function myfunctn(item){
+            console.log(item.name ,`Capital:${item.capital} Flag:${item.flag}`)
+        }
+
+
+
+//d)Print the total population of countries using reduce function
+        
+            var a4=ap.reduce((acc,ele)=>acc+ele.population,0);
+            console.log(`Total population is: ${a4}`);
+
+
+
+//e)Print the country which uses US Dollars as currency. 
+           
+    var a5 = ap.filter((ele) => ele.currencies != undefined )
+     var aa5 = a5.filter((element) =>(element.currencies['USD']))
+    console.log(aa5);
+
+ }
+
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
